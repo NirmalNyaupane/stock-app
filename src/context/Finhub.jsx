@@ -23,7 +23,7 @@ export const Finhub = ({ children }) => {
     isError: false,
     isLoading: true,
     errMsg: "",
-    responseData:{}
+    responseData: {},
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -64,7 +64,7 @@ export const Finhub = ({ children }) => {
 
   const fetchSingleStock = async (stock) => {
     try {
-      stockDispatch({type:"STOCK_LOADING"})
+      stockDispatch({ type: "STOCK_LOADING" });
       const response = await finhub.get("/quote", {
         params: {
           symbol: stock,

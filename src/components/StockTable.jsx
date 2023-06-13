@@ -4,23 +4,11 @@ const StockTable = () => {
   const { stockState } = useContext(contextProvider);
 
   return (
-    <div className="mb-12 xl:mb-0 mx-auto mt-4">
+    <div className="">
       <div className="relative flex flex-col min-w-0 break-words bg-white mb-6 rounded ">
         <div className="block overflow-x-auto">
           <table className="items-center bg-transparent">
             <tbody>
-              <tr>
-                <td>
-                  <div className="text-center">
-                    <a href={stockState.responseData.weburl} target="_black">
-                      <img
-                        src={stockState.responseData.logo}
-                        className="text-center mx-auto my-7"
-                      />
-                    </a>
-                  </div>
-                </td>
-              </tr>
               {/* first row */}
               <tr>
                 <th className="border-t-0 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap text-left text-blueGray-700 ">

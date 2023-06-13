@@ -12,7 +12,7 @@ const StockList = () => {
   const changeColor = (change) => {
     if (change > 0) {
       return "text-green-600";
-    } else {
+    } else if(change<0) {
       return "text-red-600";
     }
   };
@@ -20,7 +20,7 @@ const StockList = () => {
   const renderIcon = (change) => {
     if (change > 0) {
       return <AiFillCaretUp />;
-    } else {
+    } else if(change<0){
       return <AiFillCaretDown />;
     }
   };
