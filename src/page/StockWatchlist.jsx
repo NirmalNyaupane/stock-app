@@ -5,6 +5,8 @@ import contextProvider from "../context/Finhub";
 import { useContext } from "react";
 import StockTable from "../components/StockTable";
 import { StockChart } from "../components/StockChart";
+import CircularProgress from "@mui/material/CircularProgress";
+
 
 const StockWatchlist = () => {
   const { stockState, stockDispatch } = useContext(contextProvider);
@@ -14,6 +16,7 @@ const StockWatchlist = () => {
     let isMounted = true;
     const fetchData = async () => {
       try {
+        stockDispatch({ type: "FETCHING_DATA" });
         const response = await finhub.get("stock/profile2", {
           params: {
             symbol: symbol,
@@ -31,6 +34,15 @@ const StockWatchlist = () => {
     fetchData();
     return () => (isMounted = false);
   }, []);
+
+  if (stockState.isLoading) {
+    return (
+      <div className="container flex w-full h-[100vh] items-center justify-center">
+        <CircularProgress />
+      </div>
+    );
+  }
+
   return (
     <>
       {stockState.isLoading == false ? (

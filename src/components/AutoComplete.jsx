@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import contextProvider from "../context/Finhub";
 import { finhub } from "../api/finhub";
+import Stock from "../assets/Stock.jpg";
+
 export const AutoComplete = () => {
   const [searchQuery, setQuery] = useState("");
   const [result, changeResult] = useState([]);
@@ -30,9 +32,11 @@ export const AutoComplete = () => {
 
   return (
     <div className="pt-2 relative mx-auto text-gray-600 w-[70%] max-w-[500px]">
+      <img src={Stock} className="block my-4 w-56 mx-auto" />
+      <h2 className="font-bold text-lg text-center my-7">Trding Love</h2>
       <input
         className="border-2 border-gray-300 bg-white 
-        h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none w-full"
+        h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none w-full mb-11"
         type="search"
         name="search"
         placeholder="Search"

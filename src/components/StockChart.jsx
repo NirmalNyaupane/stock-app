@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { finhub } from "../api/finhub";
 import Chart from "react-apexCharts";
+import CircularProgress from "@mui/material/CircularProgress";
+
 export const StockChart = (stock) => {
   const [chartData, setChartData] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   const formatData = (data) => {
     setChartData(() => {
@@ -21,6 +24,7 @@ export const StockChart = (stock) => {
     let isMounted = true;
     const fetchData = async () => {
       try {
+        setLoading(true);
         const date = new Date();
         const currentTime = Math.floor(date.getTime() / 1000);
         const oneYear = currentTime - 365 * 24 * 60 * 60;
@@ -35,6 +39,7 @@ export const StockChart = (stock) => {
         });
 
         if (isMounted) {
+          setLoading(false);
           formatData(response.data);
         }
       } catch (err) {
@@ -84,6 +89,7 @@ export const StockChart = (stock) => {
   console.log(chartData);
   return (
     <>
+      {isLoading && <div className="h-[80vh] flex justify-end items-center"><CircularProgress /></div>}
       {chartData.length > 0 ? (
         <Chart
           options={options}
